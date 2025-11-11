@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "python3 -m pip install setuptools",
   "builds": [
     {
       "src": "api/index.py",
