@@ -21,28 +21,33 @@ if sys.version_info >= (3, 12):
     try:
         # Try to import distutils from setuptools (which provides compatibility)
         import setuptools
-        # Ensure distutils is available via setuptools
-        if not hasattr(sys.modules.get('distutils', None), 'core'):
-            try:
-                from setuptools import distutils
+        try:
+            # setuptools provides distutils compatibility
+            from setuptools import distutils
+            if 'distutils' not in sys.modules:
                 sys.modules['distutils'] = distutils
+            if 'distutils.core' not in sys.modules:
                 sys.modules['distutils.core'] = distutils.core
-            except (ImportError, AttributeError):
-                # If setuptools doesn't provide distutils, create a minimal shim
-                import types
+        except (ImportError, AttributeError):
+            # If setuptools doesn't provide distutils, create a minimal shim
+            import types
+            if 'distutils' not in sys.modules:
                 distutils_module = types.ModuleType('distutils')
-                distutils_core = types.ModuleType('distutils.core')
-                distutils_module.core = distutils_core
                 sys.modules['distutils'] = distutils_module
+            if 'distutils.core' not in sys.modules:
+                distutils_core = types.ModuleType('distutils.core')
+                sys.modules['distutils'].core = distutils_core
                 sys.modules['distutils.core'] = distutils_core
     except ImportError:
         # If setuptools is not available, create a minimal shim
         import types
-        distutils_module = types.ModuleType('distutils')
-        distutils_core = types.ModuleType('distutils.core')
-        distutils_module.core = distutils_core
-        sys.modules['distutils'] = distutils_module
-        sys.modules['distutils.core'] = distutils_core
+        if 'distutils' not in sys.modules:
+            distutils_module = types.ModuleType('distutils')
+            sys.modules['distutils'] = distutils_module
+        if 'distutils.core' not in sys.modules:
+            distutils_core = types.ModuleType('distutils.core')
+            sys.modules['distutils'].core = distutils_core
+            sys.modules['distutils.core'] = distutils_core
 
 # Apply the fix
 fixes_applied = []
