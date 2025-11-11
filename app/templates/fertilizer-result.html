@@ -1,0 +1,42 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Fertilizer Recommendation Result Page -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 result-card">
+        <div class="card-body p-4">
+          <div class="text-center mb-4">
+            <div class="result-icon mb-3">
+              <i class="fas fa-flask text-primary fa-4x"></i>
+            </div>
+            <h2 class="fw-bold">{{ _('Fertilizer Recommendation') }}</h2>
+          </div>
+          
+          <div class="result-content p-3 mb-4">
+            <div class="alert alert-success">
+              <p class="recommendation-text">{{ recommendation }}</p>
+            </div>
+          </div>
+          
+          <div class="additional-info mb-4">
+            <div class="card bg-light">
+              <div class="card-body">
+                <h5><i class="fas fa-lightbulb me-2"></i>{{ _('Why This Matters') }}</h5>
+                <p class="text-muted">{{ _('Proper fertilization ensures your crops receive the nutrients they need for optimal growth and yield.') }}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="text-center mt-4">
+            <a href="{{ url_for('fertilizer_recommendation') }}" class="btn btn-outline-primary">
+              <i class="fas fa-arrow-left me-2"></i>{{ _('Try Another Analysis') }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+venv310/
+env/
+ENV/
+.venv
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.pkl
+*.pth
+*.png
+*.jpg
+*.jpeg
+*.csv
+*.zip
+*.log
+
+# But keep the models and data in app/ directory
+!app/models/*.pkl
+!app/models/*.pth
+!app/Data/*.csv
+!app/static/images/*.jpg
+!app/static/images/*.png
+!app/static/images/*.ico
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Vercel
+.vercel
+

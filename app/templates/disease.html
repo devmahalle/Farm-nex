@@ -1,0 +1,82 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Disease Detection Page -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center mb-4">
+      <div class="page-header">
+        <h1 class="fw-bold"><i class="fas fa-microscope me-2"></i>{{ _('Plant Disease Detection') }}</h1>
+        <p class="lead text-muted">{{ _('Upload an image of your plant to identify potential diseases') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <form class="form-signin" method=post enctype=multipart/form-data>
+            <div class="text-center mb-4">
+              <div class="upload-area p-4 mb-3">
+                <i class="fas fa-cloud-upload-alt fa-3x mb-3 text-muted"></i>
+                <h5>{{ _('Upload Plant Image') }}</h5>
+                <p class="text-muted small">{{ _('Select a clear image of the affected plant part') }}</p>
+                <input type="file" name="file" class="form-control" id="inputfile" onchange="preview_image(event)" required>
+              </div>
+              
+              <div class="image-preview mt-4">
+                <img id="output-image" class="img-fluid rounded preview-image" />
+              </div>
+            </div>
+            
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <i class="fas fa-search me-2"></i>{{ _('Detect Disease') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-camera"></i>
+            </div>
+            <h5>{{ _('Image Analysis') }}</h5>
+            <p class="text-muted small">{{ _('Advanced AI-powered detection') }}</p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-bug"></i>
+            </div>
+            <h5>{{ _('Disease Identification') }}</h5>
+            <p class="text-muted small">{{ _('Accurate diagnosis') }}</p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-prescription-bottle"></i>
+            </div>
+            <h5>{{ _('Treatment Advice') }}</h5>
+            <p class="text-muted small">{{ _('Get remedial suggestions') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById('output-image')
+      output.src = reader.result;
+      output.classList.add('show');
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+{% endblock %}

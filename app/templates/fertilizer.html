@@ -1,0 +1,115 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Fertilizer Recommendation Page -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center mb-4">
+      <div class="page-header">
+        <h1 class="fw-bold"><i class="fas fa-flask me-2"></i>{{ _('Fertilizer Recommendation') }}</h1>
+        <p class="lead text-muted">{{ _('Get personalized fertilizer advice based on soil nutrients and crop type') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <form method="POST" action="{{ url_for('fert_recommend') }}" class="needs-validation" novalidate>
+            
+            <div class="row mb-4">
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Nitrogen" name="nitrogen" placeholder="Nitrogen" required>
+                  <label for="Nitrogen">{{ _('Nitrogen (N)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Phosphorous" name="phosphorous" placeholder="Phosphorous" required>
+                  <label for="Phosphorous">{{ _('Phosphorous (P)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Pottasium" name="pottasium" placeholder="Potassium" required>
+                  <label for="Pottasium">{{ _('Potassium (K)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-4">
+              <div class="col-12">
+                <label for="crop" class="form-label">{{ _('Crop You Want to Grow') }}</label>
+                <select name="cropname" class="form-select form-select-lg" id="crop" required>
+                  <option value="" selected disabled>{{ _('Select a crop') }}</option>
+                  <option>rice</option>
+                  <option>maize</option>
+                  <option>chickpea</option>
+                  <option>kidneybeans</option>
+                  <option>pigeonpeas</option>
+                  <option>mothbeans</option>
+                  <option>mungbean</option>
+                  <option>blackgram</option>
+                  <option>lentil</option>
+                  <option>pomegranate</option>
+                  <option>banana</option>
+                  <option>mango</option>
+                  <option>grapes</option>
+                  <option>watermelon</option>
+                  <option>muskmelon</option>
+                  <option>apple</option>
+                  <option>orange</option>
+                  <option>papaya</option>
+                  <option>coconut</option>
+                  <option>cotton</option>
+                  <option>jute</option>
+                  <option>coffee</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-leaf me-2"></i>{{ _('Get Recommendation') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h5>{{ _('Balanced Nutrients') }}</h5>
+            <p class="text-muted small">{{ _("Optimize your soil's NPK balance") }}</p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h5>{{ _('Crop-Specific') }}</h5>
+            <p class="text-muted small">{{ _("Tailored to your crop's needs") }}</p>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-icon-small">
+              <i class="fas fa-tint"></i>
+            </div>
+            <h5>{{ _('Sustainable') }}</h5>
+            <p class="text-muted small">{{ _('Environmentally conscious advice') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

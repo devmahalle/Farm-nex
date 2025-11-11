@@ -1,0 +1,32 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Crop Recommendation Result Page -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0 result-card">
+        <div class="card-body p-4 text-center">
+          <div class="result-icon mb-3">
+            <i class="fas fa-check-circle text-success fa-4x"></i>
+          </div>
+          <h2 class="fw-bold">{{ _('Recommendation Results') }}</h2>
+          <div class="result-highlight my-4 p-3">
+            <h3>{{ _('You should grow') }}</h3>
+            <h1 class="crop-name display-4 fw-bold text-primary">{{ prediction }}</h1>
+            <p class="lead">{{ _('in your farm for optimal yield') }}</p>
+          </div>
+          <div class="additional-info mt-4">
+            <p class="text-muted">{{ _('This recommendation is based on your soil composition and local climate conditions.') }}</p>
+          </div>
+          <div class="mt-4">
+            <a href="{{ url_for('crop_recommend') }}" class="btn btn-outline-primary">
+              <i class="fas fa-arrow-left me-2"></i>{{ _('Try Another Prediction') }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

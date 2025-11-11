@@ -1,0 +1,115 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Crop Recommendation Page -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center mb-4">
+      <div class="page-header">
+        <h1 class="fw-bold"><i class="fas fa-seedling me-2"></i>{{ _('Crop Recommendation') }}</h1>
+        <p class="lead text-muted">{{ _('Find the most suitable crop for your farm based on soil conditions and climate') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <form method="POST" action="{{ url_for('crop_prediction') }}" class="needs-validation" novalidate>
+            
+            <div class="row mb-4">
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Nitrogen" name="nitrogen" placeholder="Nitrogen" required>
+                  <label for="Nitrogen">{{ _('Nitrogen (N)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Phosphorous" name="phosphorous" placeholder="Phosphorous" required>
+                  <label for="Phosphorous">{{ _('Phosphorous (P)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+              
+              <div class="col-md-4 mb-3">
+                <div class="form-floating">
+                  <input type="number" class="form-control" id="Pottasium" name="pottasium" placeholder="Potassium" required>
+                  <label for="Pottasium">{{ _('Potassium (K)') }}</label>
+                  <div class="form-text">Example: 50</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-4">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input type="number" step="0.01" class="form-control" id="ph" name="ph" placeholder="pH level" required>
+                  <label for="ph">{{ _('pH Level') }}</label>
+                  <div class="form-text">{{ _('Range: 0-14 (7 is neutral)') }}</div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input type="number" step="0.01" class="form-control" id="Rainfall" name="rainfall" placeholder="Rainfall" required>
+                  <label for="Rainfall">{{ _('Rainfall (mm)') }}</label>
+                  <div class="form-text">{{ _('Annual rainfall in millimeters') }}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-4">
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input type="number" step="0.01" class="form-control" id="Temperature" name="temperature" placeholder="Temperature" required>
+                  <label for="Temperature">{{ _('Temperature (°C)') }}</label>
+                  <div class="form-text">{{ _('Average temperature in Celsius') }}</div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <div class="form-floating">
+                  <input type="number" step="0.01" class="form-control" id="Humidity" name="humidity" placeholder="Humidity" required>
+                  <label for="Humidity">{{ _('Humidity (%)') }}</label>
+                  <div class="form-text">{{ _('Relative humidity percentage') }}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row mb-4">
+              <div class="col-md-6 mb-3">
+                <label for="sts" class="form-label">{{ _('State') }}</label>
+                <select onchange="print_city('state', this.selectedIndex);" id="sts" name="stt" class="form-select" required>
+                </select>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label for="state" class="form-label">{{ _('City') }}</label>
+                <select id="state" class="form-select" name="city" required>
+                </select>
+                <script language="javascript">
+                  print_state("sts");
+                </script>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-search me-2"></i>{{ _('Get Recommendation') }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <p class="text-muted small">{{ _('Our recommendation system uses machine learning to analyze your inputs and suggest the best crop.') }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
