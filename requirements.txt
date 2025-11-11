@@ -21,3 +21,6 @@ certifi==2022.12.7
 charset-normalizer==3.1.0
 idna==3.4
 threadpoolctl==3.1.0
+matplotlib==3.7.1
+seaborn==0.12.2
+setuptools==68.0.0
