@@ -14,6 +14,6 @@ os.chdir(app_dir)
 # Import the Flask app
 from application import app
 
-# Vercel expects the app to be exported
-# The Flask app will be automatically detected by Vercel's Python runtime
+# Vercel Python runtime expects the app to be exported
+# This will be automatically detected by Vercel
 
